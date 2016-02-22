@@ -1,0 +1,16 @@
+# Site navigation links
+
+- title: About
+  url: /about/
+
+- title: IT기술
+  url: /tech/
+
+- title: 기타
+  url: /etc/
+
+- title: Blog구성
+  url: /env/
+  
+- title: Theme Setup
+  url: /theme-setup/
