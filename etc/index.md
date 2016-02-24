@@ -1,8 +1,8 @@
 ---
 layout: post-index-category
-title: About Blog Posts
+title: About 기타 Posts
 category : etc
-excerpt: "A List of Posts about Blog"
+excerpt: "A List of Posts about etc."
 image:
   feature: sample-image-4.jpg
   credit: WeGraphics
