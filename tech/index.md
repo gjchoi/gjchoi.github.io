@@ -1,8 +1,8 @@
 ---
 layout: post-index-category
-title: About Blog Posts
+title: About IT기술 Posts
 category : tech
-excerpt: "A List of Posts about Blog"
+excerpt: "A List of Posts about IT technology"
 image:
   feature: sample-image-4.jpg
   credit: WeGraphics
