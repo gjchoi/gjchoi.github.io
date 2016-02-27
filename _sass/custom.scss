@@ -15,3 +15,14 @@ div .view{
     margin: 0.5em;
     border: 1px solid #999;
 }
+
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-color: grey;
+}
+
+table>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
