@@ -22,7 +22,7 @@ Github 가입하기
 (만약 저거 외에 다른 이름을 주면 project url이라고해서 *http://{계정이름}.github.io/{repsitory이름}* 으로 사용할 수 있지만 github에 내장된 page서비스인 jekyll 기능을 사용에 제약이있다)
 
 #### Github repository
-![repo_img](http://gjchoi.github.io/img/github-page/repo_img1.png)
+![repo_img](http://gjchoi.github.io/images/github-page/repo_img1.png)
 
 
 Github page 설정하기
@@ -32,7 +32,7 @@ Github page 설정하기
 계정 repository에 setting 메뉴에 들어가보면 automatic page generator와 html or jekyll 사용을 고를 수 있는 메뉴가 나오는데 자동생성하면 github markdown을 사용하여 내용물을 만들고 템플릿도 바로 선택해서 사용 가능하여 편리하지만 메인페이지에 국한되고 블로그처럼 기능을 이용하기에는 제약이 따르므로 jekyll기능을 사용하기로하자.
 
 #### Github page setting 메뉴
-![setting그림](http://gjchoi.github.io/img/github-page/setting_img1.png)
+![setting그림](http://gjchoi.github.io/images/github-page/setting_img1.png)
 
 
 Jekyll 이란?
@@ -58,14 +58,14 @@ Jekyll theme 마켓 사용하여 배포해보기
 ---------------
 
 ##### Jekyll themes
-![마켓플레이스그림](http://gjchoi.github.io/img/github-page/theme_market_img1.png)
+![마켓플레이스그림](http://gjchoi.github.io/images/github-page/theme_market_img1.png)
 
 사실 Jekyll theme를 모아놓은 마켓플레이스가 존재한다. 이 싸이트에 들어가서 맘에드는 theme 눈으로 보고 골라 사용할 수 있어서 너무 유용하다!  
 [Jekyll theme 사이트](http://jekyllthemes.org/)
 
 
 ##### Jekyll theme 선택
-![테마선택](http://gjchoi.github.io/img/github-page/theme_market_img2.png)  
+![테마선택](http://gjchoi.github.io/images/github-page/theme_market_img2.png)  
 
 그 중에 마음에 드는 theme를 선택했다면 Homepage버튼을 선택해서 fork를 하는 방법과 Download를 눌러 나온 데이터를 github에 commit하는 방법 두가지가 있는데 필자는 그중에 2번째 방법으로 선택했다. 구체적으로 설명하면 다음과 같다.
 
@@ -79,7 +79,7 @@ Jekyll theme 마켓 사용하여 배포해보기
 - Github에 올린 후에(기왕이면 올리기전이 좋음) jekyll의 주요 설정파일인 _config.yml이라는 파일이 존재한다. theme 템플릿을 사용한 것이므로 나만의 blog를 만들기 위해서는 해당파일에 내용물을 내 정보로 바꿔줘야 한다. 주로 블로그 title, 이름, email, sns 주소, 블로그 main site path 등일 것이다.
 
 #### Jekyll _config.yml
-![설정정보 변경 그림](http://gjchoi.github.io/img/github-page/jekyll_conf_img1.png)
+![설정정보 변경 그림](http://gjchoi.github.io/images/github-page/jekyll_conf_img1.png)
 
 
 이정도만 해주면 싸이트에 생성은 어느정도 완성된 것이다. 최초 배포이므로 시간이 좀 소요되는데 배포가 완료되었다면 *http://{계정이름}.github.io*로 접근하면 아까 선택했던 theme로 블로그가 완성된 모습을 볼 수 있다.  
@@ -126,7 +126,7 @@ Jekyll 페이지 만들어보기
 Jekyll페이지는 _posts에 .md파일을 만들어 넣는 것만으로 페이지만들기는 끝이다. 대신 jekyll의 markdown은 `'kramdown'`을 사용하므로 `'kramdown'` 문법에 맞추어 작성해야 한다. `'kramdown'`에 대한 자세한 사용법은 다음 posting에서 다루기로 하자.
 
 #### .md파일 샘플사진
-![.md파일 샘플사진](http://gjchoi.github.io/img/github-page/md_sample_img1.png)  
+![.md파일 샘플사진](http://gjchoi.github.io/images/github-page/md_sample_img1.png)  
 
 ~~~
 ---
