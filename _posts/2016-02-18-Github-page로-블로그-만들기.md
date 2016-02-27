@@ -39,7 +39,9 @@ Jekyll 이란?
 ---------------
 
 Jekyll은 ruby기반으로 만들어진 손쉽게 blog스타일의 정적 site를 생성해주는 도구로서
-사용자들은 markerdown이나 text기반의 내용만 만들어 업로드하는 정도로 블로그를 운영 할 수 있도록 해준다. <u>특히 GitHub Page에 engine으로 사용되어 github website로서 서비스 할 수 있게 해준다.</u> **바로 이 기능을 사용하여 블로그를 구성할 것이다!**  
+사용자들은 markerdown이나 text기반의 내용만 만들어 업로드하는 정도로 블로그를 운영 할 수 있도록 해준다. 
+jsp같은 데이터 동적처리를 위해서 Liquid Rederer를 사용한다.
+<u>특히 GitHub Page에 engine으로 사용되어 github website로서 서비스 할 수 있게 해준다.</u> **바로 이 기능을 사용하여 블로그를 구성할 것이다!**  
 *※ 참고로 jekyll은 스펠링이 이상하지만 우리가 잘아는 지킬앤 하이드에 지킬이다*
 
 [Jekyll 사이트](https://jekyllrb.com/)에서는 아래와 같이 소개하고 있다.
@@ -94,7 +96,7 @@ Jekyll theme 마켓 사용하여 배포해보기
 현재 github에서는 markdown을 `'kramdown'`만 지원하는데 예전에 만들어진 theme에는 `'redcarpet'` 같은 걸로 설정되어있는 경우가 있다. 기능상 문제는없지만 warnning 메일이 계속온다는 불편함이있다..
 
 #### Build fail
-- jekyll은 markdown파일을 html로 변환해주고 css를 입혀 보여주는 기능이 주이므로 주로 css를 수정하다가 잘못된 경우에 발생한다. 구체적인 메시지가 제공되진 않아서 알아서 잘 추적해야한다.....
+- jekyll은 markdown파일이나 html파일내에 liquid 문법오류가 때문에 주로 발생한다. 구체적인 메시지가 제공되진 않아서 알아서 잘 추적해야한다.....
 
 
 Jekyll 디렉토리 구조
