@@ -1,6 +1,10 @@
 /* ==========================================================================
    Custom CSS 
    ========================================================================== */
+
+h1,h2,h3,h4,h5{
+   padding-top : 1rem;
+}   
    
 p {
   padding-bottom : 0.5rem;
@@ -10,4 +14,34 @@ div .view{
     padding: 0.5em;
     margin: 0.5em;
     border: 1px solid #999;
+}
+
+.by-line {
+    display: block;
+    color: #626262;
+    line-height: 0.1em;
+    margin-top : -1em;
+    margin-bottom: 1.5em;
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;    
+    border-color: grey;
+}
+
+ 
+table>tbody>tr>td, table>tbody>tr>th, table>tfoot>tr>td, table>tfoot>tr>th, table>thead>tr>td, table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+table>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
 }
