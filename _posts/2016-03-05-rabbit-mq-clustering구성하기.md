@@ -3,7 +3,7 @@ layout: post
 title: Rabbit MQ Clustering 설정
 excerpt: "Rabbit MQ를 여러서버에 설치하여 동시처리 능력을 향상시키는 Clustering 설정에 대해서 알아본다"
 tags: [rabbitMQ, oss]
-modified: 2016-03-03
+modified: 2016-03-05
 comments: true
 category : tech
 ---
