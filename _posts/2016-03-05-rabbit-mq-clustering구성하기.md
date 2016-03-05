@@ -1,3 +1,14 @@
+---
+layout: post
+title: Rabbit MQ Clustering 설정
+excerpt: "Rabbit MQ를 여러서버에 설치하여 동시처리 능력을 향상시키는 Clustering 설정에 대해서 알아본다"
+tags: [rabbitMQ, oss]
+modified: 2016-03-03
+comments: true
+category : tech
+---
+
+
 RabbitMQ Clustering
 ===================
 
@@ -19,6 +30,8 @@ RabbitMQ는 여러 방법으로 클러스터 가능
 4. rabbitmq-cluster 플러그인 사용하기
 
 
+이 방법들 중 가장 기본이 되는 RabbitMQ Commandline tool을 이용한 1번 설정방법에 대해서 구체적으로 알아본다. 
+
 
 준비
 -------------------
@@ -35,22 +48,34 @@ RabbitMQ는 Erlang Cookie라는 값을 미리 교환하여 서로를 인증한�
 다른 노드의 파일에 덮어써서 서로간에 일치시켜주면 된다.
 
 
+### 여러서버의 노드들간의 클러스터 구성하기
 
-### 단일서버에 노드를 여러개띄워 클러스터 구성하기
+실환경에서는 RabbitMQ를 각 서버에 설치하고 서버를 구성하여 동시처리 성능을 향상시킨다. 앞선 쿠키 교환도 이러한 다른 서버들간의 통신을 위해 필요한 과정이며, 이러한 서버들간의 서로를 인지하기 위한 구분체계의 설정 또한 되어야 한다.
+
+`rabbit@TestServer` 식의 `{node명}@{서버Host명}` 방식으로 서로를 구분하며, 필요에 따라 `{서버Host명}`은 `/etc/hosts`파일 등에 사전교환되어 설정하여야 한다.
+
+필자는 단일 서버환경만 가지고 있으므로 일단은 아래처럼 단일 서버에 여러 노드를 띄워서 클러스터 구성하는 방법으로 간단히 클러스터 구성하고 해제하는 법에 대해서 테스트해보고자 함.
+
+
+### 단일서버에 다중노드로 클러스터 구성하기
 
 RabbitMQ를 설치한 서버에 노드라는 단위로 여러 프로세스를 실행하여 사용할 수 있다.
 이 프로세스끼리 클러스터로 연결하여 구성을 테스트해 볼 수 있다.
 
 
+단일서버에서 노드를 실행 할 때 같은 config 설정을 바라보므로 포트 등이 충돌 할 수 있다. 이를 방지하기 위해 Runtime의 환경설정값을 사용하여 충돌을 피한다.
+
 #### Node1 실행
 
+~~~
 RABBITMQ_NODE_PORT=5672 RABBITMQ_SERVER_START_ARGS="-rabbitmq_management listener [{port,15672}]" RABBITMQ_NODENAME=node1 rabbitmq-server -detached
-
+~~~
 
 #### Node2 실행
 
+~~~
 RABBITMQ_NODE_PORT=5673 RABBITMQ_SERVER_START_ARGS="-rabbitmq_management listener [{port,15673}]" RABBITMQ_NODENAME=node2 rabbitmq-server -detached
-
+~~~
 
 #### Cluster되지 않은 상태 확인
 
