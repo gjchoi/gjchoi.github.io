@@ -80,7 +80,7 @@ RABBITMQ_NODE_PORT=5673 RABBITMQ_SERVER_START_ARGS="-rabbitmq_management listene
 #### Cluster되지 않은 상태 확인
 
 ~~~~~~
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 cluster_status
+$ sudo rabbitmqctl -n node1 cluster_status
 
 Cluster status of node 'node1@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox','node3@tester-VirtualBox']}]},
@@ -89,7 +89,7 @@ Cluster status of node 'node1@tester-VirtualBox' ...
  {partitions,[]},
  {alarms,[{'node1@tester-VirtualBox',[]}]}]
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 cluster_status
+$ sudo rabbitmqctl -n node2 cluster_status
 Cluster status of node 'node2@tester-VirtualBox' ...
 [{nodes,[{disc,['node2@tester-VirtualBox']}]},
  {running_nodes,['node2@tester-VirtualBox']},
@@ -120,14 +120,15 @@ node1과 node2의 cluster_status 명령을 통해 Cluster된 상태를 확인 �
 
 ~~~~~~
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 cluster_status
+$ sudo rabbitmqctl -n node1 cluster_status
 Cluster status of node 'node1@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox','node2@tester-VirtualBox']}]},
  {running_nodes,['node2@tester-VirtualBox','node1@tester-VirtualBox']},
  {cluster_name,<<"node1@tester-VirtualBox">>},
  {partitions,[]},
  {alarms,[{'node2@tester-VirtualBox',[]},{'node1@tester-VirtualBox',[]}]}]
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 cluster_status
+ 
+$ sudo rabbitmqctl -n node2 cluster_status
 Cluster status of node 'node2@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox','node2@tester-VirtualBox']}]},
  {running_nodes,['node1@tester-VirtualBox','node2@tester-VirtualBox']},
@@ -144,9 +145,9 @@ Cluster에 포함된 node1이 중지되어도 node2에 의해서 동작이 가�
 running상태가 node2하나 뿐인 것으로 표시된다.
 
 ~~~~~~~~
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 stop
+$ sudo rabbitmqctl -n node1 stop
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 cluster_status
+$ sudo rabbitmqctl -n node2 cluster_status
 Cluster status of node 'node2@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox','node2@tester-VirtualBox']}]},
  {running_nodes,['node2@tester-VirtualBox']},
@@ -178,11 +179,13 @@ cluster서버를 순차적으로 모두 중지하고 재기동 할 때, 재기�
 node2를 stop_app, reset하면 node2가 같은 Cluster에서 제외되었음을 다른 노드들이 감지한다.
 
 ~~~~~~~~
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 stop_app
+$ sudo rabbitmqctl -n node2 stop_app
 Stopping node 'node2@tester-VirtualBox' ...
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 reset
+
+$ sudo rabbitmqctl -n node2 reset
 Resetting node 'node2@tester-VirtualBox' ...
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 cluster_status
+
+$ sudo rabbitmqctl -n node1 cluster_status
 Cluster status of node 'node1@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox']}]},
  {running_nodes,['node1@tester-VirtualBox']},
@@ -204,11 +207,13 @@ forget_cluster_node로 원격의 node1을 제거하면 node2에는 갱신된 Clu
 
 
 ~~~~~~~~
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 stop_app
+$ sudo rabbitmqctl -n node1 stop_app
 Stopping node 'node1@tester-VirtualBox' ...
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 forget_cluster_node node1@`hostname -s`
+
+$ sudo rabbitmqctl -n node2 forget_cluster_node node1@`hostname -s`
 Removing node 'node1@tester-VirtualBox' from cluster ...
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 cluster_status
+
+$ sudo rabbitmqctl -n node1 cluster_status
 Cluster status of node 'node1@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox','node2@tester-VirtualBox']}]},
  {alarms,[{'node2@tester-VirtualBox',[]}]}]
@@ -220,11 +225,12 @@ Cluster status of node 'node2@tester-VirtualBox' ...
  {partitions,[]},
  {alarms,[{'node2@tester-VirtualBox',[]}]}]
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 reset
+$ sudo rabbitmqctl -n node1 reset
 Resetting node 'node1@tester-VirtualBox' ...
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 start_app
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node1 cluster_status
+$ sudo rabbitmqctl -n node1 start_app
+
+$ sudo rabbitmqctl -n node1 cluster_status
 Cluster status of node 'node1@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox']}]},
  {running_nodes,['node1@tester-VirtualBox']},
@@ -257,14 +263,15 @@ rabbitmqctl join_cluster --ram rabbit@rabbit1
 ##### 이미 cluster된 노드의 타입 변경
 
 ~~~~~~~~
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 stop_app
+$ sudo rabbitmqctl -n node2 stop_app
 Stopping node 'node2@tester-VirtualBox' ...
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 change_cluster_node_type ram
+
+$ sudo rabbitmqctl -n node2 change_cluster_node_type ram
 Turning 'node2@tester-VirtualBox' into a ram node ...
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 start_app
+$ sudo rabbitmqctl -n node2 start_app
 
-tester@tester-VirtualBox:~$ sudo rabbitmqctl -n node2 cluster_status
+$ sudo rabbitmqctl -n node2 cluster_status
 Cluster status of node 'node2@tester-VirtualBox' ...
 [{nodes,[{disc,['node1@tester-VirtualBox']},
          {ram,['node2@tester-VirtualBox']}]},
