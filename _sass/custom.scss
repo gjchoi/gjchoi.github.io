@@ -8,6 +8,15 @@ h1,h2,h3,h4,h5{
    
 p {
   padding-bottom : 0.5rem;
+  line-height : 1.8rem;
+}
+
+ul {
+    line-height: 1.8rem;
+}
+
+p+p {
+    text-indent: 0.8rem;
 }
 
 div .view{
