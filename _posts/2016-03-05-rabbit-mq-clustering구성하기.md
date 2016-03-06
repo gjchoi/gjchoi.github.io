@@ -22,11 +22,8 @@ Clustering 방법
 RabbitMQ는 여러 방법으로 클러스터 가능
 
 1. rabbitmqctl 통해서 수동으로 하기
-
 2. config file에 cluster할 node들을 선언해서 하기
-
 3. rabbitmq-autocluster 플러그인 사용하기
-
 4. rabbitmq-cluster 플러그인 사용하기
 
 
