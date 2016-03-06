@@ -11,6 +11,10 @@ p {
   line-height : 1.9rem;
 }
 
+p+p {
+    text-indent: 0.8rem;
+}
+
 div .view{
     padding: 0.5em;
     margin: 0.5em;
