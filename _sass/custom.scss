@@ -25,6 +25,17 @@ div .view{
     border: 1px solid #999;
 }
 
+@media screen and (max-width: 400px) {
+.by-line {
+    display: block;
+    color: #626262;
+    line-height: 0.1em;
+    margin-bottom: 1.5em;
+    font-weight: 200;
+    font-size: 1rem;
+}
+}
+
 .by-line {
     display: block;
     color: #626262;
