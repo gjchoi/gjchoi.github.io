@@ -60,3 +60,10 @@ table>tbody>tr>td, table>tbody>tr>th, table>tfoot>tr>td, table>tfoot>tr>th, tabl
 table>tbody>tr:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
+
+
+pre.highlight {
+    padding: 1em;
+    background: black;
+    color: white;
+}
