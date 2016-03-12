@@ -461,7 +461,7 @@ $button-size: 1.5rem;
 	font-size: 95%;
 	@media #{$large} {
 		display: block;
-		@include grid(12,2);
+		@include grid(12,1.5);
 		@include prefix(12,0.5);
 		@include suffix(12,0.5);
 		position: absolute;
