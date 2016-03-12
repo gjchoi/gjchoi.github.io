@@ -6,8 +6,13 @@ body{
    font-family : 'Jeju Gothic','Malgun Gothic'
 }
 
+body.post h2{
+   background-color: #aaa;
+   color : white;
+}
+
 h1,h2,h3,h4,h5{
-   padding-top : 1rem;
+   padding : 0.5rem;
 }   
    
 p {
