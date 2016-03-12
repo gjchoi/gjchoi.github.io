@@ -11,8 +11,11 @@ body.post h2{
    color : white;
 }
 
-h1,h2,h3,h4,h5{
+h1,h2{
    padding : 0.5rem;
+}
+
+h1,h2,h3,h4,h5{
    font-family : 'Jeju Gothic','Malgun Gothic'
 }   
 
@@ -21,8 +24,8 @@ h4{
 }
 
 h5{
-   color: #0E3684;
-   font-size: 1.5rem;
+   color: #5D5D5D;
+   font-size: 1.4rem;
 }
    
 p {
