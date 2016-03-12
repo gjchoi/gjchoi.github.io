@@ -15,7 +15,7 @@ h1,h2{
    padding : 0.5rem;
 }
 
-h1,h2,h3,h4,h5{
+h1,h2,h3,h4,h5,h6{
    font-family : 'Jeju Gothic','Malgun Gothic'
 }   
 
@@ -27,7 +27,18 @@ h5{
    color: #5D5D5D;
    font-size: 1.4rem;
 }
-   
+
+h6{
+   color: #5D5D5D;
+   font-size: 1.2rem;
+}
+
+dt {
+    font-style: oblique;
+    font-weight: bold;
+    margin: .5rem 0 .5rem 0;
+}
+
 p {
   padding-bottom : 0.3rem;
   line-height : 1.8rem;
