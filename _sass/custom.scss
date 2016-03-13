@@ -11,6 +11,10 @@ body.post h2{
    color : white;
 }
 
+#main {
+    margin-top: 1em;
+}
+
 h1,h2{
    padding : 0.5rem;
 }
@@ -62,12 +66,11 @@ div .view{
    border-top: 0.5px dotted #ddd;
 }
 
-.headline-wrap {
-    text-align: right;
-    font-size: 1rem;
-    color: #ddd;
-    font-style: blink;
-    margin-bottom: 1rem;
+p.post_title {
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .by-line {
