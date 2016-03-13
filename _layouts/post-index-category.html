@@ -36,10 +36,7 @@
     <h1>{{ page.title }}</h1>
     {% capture written_year %}'None'{% endcapture %}
 
-    {{site.posts | join:","}}
-    
     {% assign posts = site.posts | sort: 'weight'%}
-    {{posts | join:","}}
     {% for post in posts %}
     
     {% if post.category == page.category %}  
