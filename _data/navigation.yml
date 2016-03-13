@@ -3,8 +3,8 @@
 - title: About
   url: /about/
 
-- title: IT기술
-  url: /tech/
+- title: RabbitMQ
+  url: /rabbit/
 
 - title: 기타
   url: /etc/
