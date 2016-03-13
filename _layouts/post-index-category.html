@@ -37,10 +37,12 @@
     {% capture written_year %}'None'{% endcapture %}
 
     {% assign posts = site.posts | sort: 'weight'%}
+    {% assign var = 0 %}
     {% for post in posts %}
     
     {% if post.category == page.category %}  
-
+      {% assign var = var+1 %}
+      
       {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
       {% if year != written_year %}
         <h3>{{ year }}</h3>
@@ -50,7 +52,7 @@
         {% if post.link %}
           <h2 class="link-post"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
         {% else %}
-          <h2><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{% increment cnt %}. {{ post.title }}</a></h2>
+          <h2><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{var}}. {{ post.title }}</a></h2>
           <time align="right" datetime="{{ post.date | date_to_xmlschema }}" class="by-line">{{ post.date | date_to_string }}</time>          
           <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
         {% endif %}
