@@ -70,7 +70,7 @@ configuration 파일 (rabbitmq.config)열어 *queue_master_locator* 항목을 �
 vi /etc/rabbitmq/rabbitmq.config
 ~~~
 
-~~~
+~~~~~
 [
  {rabbit,
   [
@@ -80,6 +80,7 @@ vi /etc/rabbitmq/rabbitmq.config
 
   ]}
 ].
+~~~~~
 
 cluster 노드들을 재기동하여 설정을 반영한다.
 
