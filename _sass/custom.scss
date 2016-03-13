@@ -6,16 +6,17 @@ body{
    font-family : 'Jeju Gothic','Malgun Gothic'
 }
 
-body.post h2{
-   background-color: #aaa;
-   color : white;
-}
-
 #main {
     margin-top: 1.5em;
 }
 
-h1,h2{
+body.post h1{
+   padding : 0.5rem;
+}
+
+body.post h2{
+   background-color: #aaa;
+   color : white;
    padding : 0.5rem;
 }
 
