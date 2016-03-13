@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RabbitMQ HA구성
+title: RabbitMQ - HA구성
 weight: 10
 excerpt: "Rabbit MQ의 HA Clustering을 통해 서비스의 가용성을 높이는 방법에 대해서 알아본다."
 tags: [rabbitMQ, oss]
