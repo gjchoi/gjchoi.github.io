@@ -12,7 +12,7 @@ body.post h2{
 }
 
 #main {
-    margin-top: 1em;
+    margin-top: 1.5em;
 }
 
 h1,h2{
@@ -67,6 +67,7 @@ div .view{
 }
 
 p.post_title {
+    float: right;
     padding: 0;
     margin: 0;
     font-size: 1.2rem;
