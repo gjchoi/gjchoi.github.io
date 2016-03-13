@@ -39,7 +39,7 @@
     {% assign posts = site.posts | sort: 'title'%}
     {% for post in posts %}
     
-    {{post.title}}
+    {{post.weight}}
     
     {% if post.category == page.category %}  
       {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
