@@ -35,9 +35,9 @@
   <article class="post">
     <div class="headline-wrap">
       {% if page.link %}
-        <a href="{{ page.link }}">{{ page.title }}</a>
+        <p class="post_title"><a href="{{ page.link }}">{{ page.title }}</a></p>
       {% else %}
-        <a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a>
+        <p class="post_title"><a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></p>
       {% endif %}
       <time align="right" datetime="{{ page.date | date_to_xmlschema }}" class="by-line">{{ page.date | date_to_string }}</time>
     </div><!--/ .headline-wrap -->
