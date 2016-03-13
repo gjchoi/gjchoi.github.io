@@ -1,11 +1,11 @@
 ---
 layout: post
-title: HA구성
+title: 6. HA구성
 excerpt: "Rabbit MQ의 HA Clustering을 통해 서비스의 가용성을 높이는 방법에 대해서 알아본다."
 tags: [rabbitMQ, oss]
 modified: 2016-03-10
 comments: true
-category : tech
+category : rabbit
 ---
 
 
