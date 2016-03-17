@@ -7,6 +7,7 @@ tags: [rabbitMQ, oss]
 modified: 2016-03-05
 comments: true
 category : rabbit
+icon : wrench.ico
 ---
 
 
