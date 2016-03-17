@@ -7,6 +7,7 @@ tags: [rabbitMQ, oss]
 modified: 2016-03-10
 comments: true
 category : rabbit
+icon : sticky-note.ico
 ---
 
 
