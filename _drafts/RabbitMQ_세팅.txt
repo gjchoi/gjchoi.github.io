@@ -1,0 +1,118 @@
+RabbitMQ 서버세팅
+
+운영체제별로 다르지만 필자는 `ubuntu-14-04` 기준으로 작성함
+
+
+1. /etc/apt/sources.list에 설치파일deb경로 추가
+
+~~~
+deb http://www.rabbitmq.com/debian/ testing main
+~~~
+
+2. `unsigned packages` 경고를 피하기 위해 publisc key를 신뢰할 수 있는 키 List에 추가
+
+~~~
+wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+
+sudo apt-key add rabbitmq-signing-key-public.asc
+~~
+
+3. apt-get list update
+
+~~~
+sudo apt-get update
+
+sudo apt-get install rabbitmq-server
+~~~
+
+
+erlang언어 설치의 dependency를 가지고 있지만 패키지와 함께 설치된다.
+
+
+
+### 포트 접근 확인
+
+방화벽 확인을 통해 다음 포트들이 사용가능한지 확인 필요
+
+4369 (epmd), 25672 (Erlang distribution)
+5672, 5671 (AMQP 0-9-1 without and with TLS)
+15672 (if management plugin is enabled)
+61613, 61614 (if STOMP is enabled)
+1883, 8883 (if MQTT is enabled)
+
+
+
+### 로그
+
+/var/log/rabbitmq
+
+output로그
+
+- rabbit@tester-VirtualBox.log
+
+기타 추가로그
+
+- rabbit@tester-VirtualBox-sasl.log
+
+
+
+### 리눅스시스템 Limit 조정
+
+RabbitMQ 수행시 동시처리를 위해 limit 제약을 수정해줘야할 필요 있음.
+
+유저별 open file 제약인 `ulimit -n`을 조정해준다.
+(여러 linux머신에는 1024로 되어 있는데 이값은 너무 적음)
+
+#### SoftLimit
+`/etc/security/limits.conf`에는 hard 제약이 걸려있다.
+SoftLimit는 linux user가 걸수 있는 제약으로 hard제약보다 클순 없음
+
+##### 제약 확인
+~~~
+ulimit -n
+~~~
+
+하드웨어 설정보기
+
+~~~
+ulimit -Ha
+~~~
+
+소프트웨어 설정보기
+
+~~~
+ulimit -Sa
+~~~
+
+##### 제한수정
+~~~
+ulimit -S -n 4096
+~~~
+
+##### 권장 Limit
+
+- 운영기65536 이상
+- 개발기4096 이상
+
+
+##### 반영확인
+
+ulimit 설정 후에 RabbitMQ서버를 재기동해야 반영된다.
+
+~~~
+cat /proc/$RABBITMQ_BEAM_PROCESS_PID/limits
+~~~
+
+
+
+
+
+RabbitMQ의 디폴트 세팅이 잘되어있어서 그냥 기동시키는 것만으로도 충분히 사용가능하다.
+
+
+
+## RabbitMQ 환경변수
+
+RABBITMQ_*var_name* 형태의 설정값
+
+Shell 환경변수가 최우선시되고 없으면 rabbitmq-env.conf 또 없으면 default값을 따름

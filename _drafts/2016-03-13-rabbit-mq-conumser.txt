@@ -1,0 +1,121 @@
+Consumer Cancel Notification
+
+consumer가 여러가지 이후로 consumer을 중단해야 할 때 신호를 받을 수 있다.
+
+
+### Consumer가 Cancel수행
+
+consumer가 `basic.cancel`을 보내고 server가 `basic.cancelOk` 보냄
+consumer가 발급한 cosumerTag를 파라메터로 보내야 함
+
+
+전송부 코드
+
+~~~~~~ java
+// consumerTag는 consumer객체 생성시 return값 (consumer를 구분하는 ID값)
+channel.basicCancel(consumerTag);
+~~~~~~
+
+
+수신부 코드
+
+~~~~~~ java
+Consumer cons = new QueueingConsumer(channel){
+	@Override
+	public void handleCancelOk(String consumerTag) {
+		System.out.println("handleCancelOk : " + consumerTag);
+		//TODO 처리부분 구현
+		super.handleCancelOk(consumerTag);
+	}
+}
+~~~~~~
+
+결과 콘솔
+
+~~~~~~
+handleCancelOk : amq.ctag-zlaMnQzBWdMEb5gKKPberw
+~~~~~~
+
+
+
+### Server가 Cancel수행 (RabbitMQ Extention 기능)
+
+queue가 지워졌다던가, fail over상황 등에 대해서 consumer에게 `basic.cancel`을 보내주도록 하여
+연결을 중시하고 다른 처리 할 수 있도록 알려준다. consumer는 broker에게 `basic.cancelOk`를 회신한다.
+
+
+서버설정에 있는 client-properties 부분에 capabilities부분에 
+*consumer_cancel_notify*가 true로 설정되어있어야 활성화 된다. (default가 true임)
+
+~~~~~
+
+"capabilities" = (table)   { "exchange_exchange_bindings" = (bool) true,
+                               "consumer_cancel_notify"     = (bool) true,
+                               "basic.nack"                 = (bool) true,
+                               "publisher_confirms"         = (bool) true },
+
+~~~~~
+
+
+#### HA fail over
+
+서버에서 `basic.cancel`을 보내는 경우 중에 master가 변경되었을 경우가 있다.
+기본적으로는 동작하지 않고 *x-cancel-on-ha-failover=true*를 consume시 파라메터로 전달해야 cancel메시지를 받을 수 있다.
+
+
+상황을 재현해보기 위해서는 서버에 HA구성되어있는 2개이상의 노드가 필요하다.
+
+
+2번노드에 Queue를 생성하여 노드2이 QNAME1 queue의 master가 되도록 만든다.
+
+~~~~ java
+channel.queueDeclare(QNAME1, false, false, false, null);
+~~~~
+
+
+1번 노드에 접근하여 QNAME1 queue를 Consume한다. (slave에 연결)
+
+~~~~ java
+
+Consumer cons = new QueueingConsumer(channel){
+			
+	@Override
+	public void handleCancel(String consumerTag) throws IOException {
+		System.out.println("handleCancel : " + consumerTag);
+		super.handleCancel(consumerTag);
+	}
+
+}
+
+Map<String, Object> map = new HashMap<String, Object>();
+map.put("x-cancel-on-ha-failover", true);
+	
+String consumerTag = channel.basicConsume(QNAME1, true, map, cons);
+
+~~~~
+
+[node2의 HA master상태확인 그림]
+
+
+서버 rabbitmqctl로 노드 2번을 중단시킨다. (QNAME1 queue의 master가 노드1=>노드2 로 변경)
+
+~~~~ java
+
+sudo rabbitmqctl -n node2 stop_app
+
+~~~~ 
+
+[node1에서 node2로 master변경상태 그림]
+
+
+결과 콘솔
+
+~~~~
+
+handleCancel : amq.ctag-d5jFP2yfHNWI7RpBGaBptA
+
+~~~~
+
+
+
+
