@@ -36,6 +36,12 @@
     <h3><a href="{{ site.url}}/posts/">Recent Posts</a></h3>
     {% for post in site.posts limit:5 %}
     <article>
+      {% if post.icon %}
+      <img src="{{ site.url }}/images/icon/{{post.icon}}" width="50px" height="50px" style="
+              float: left;
+              margin-right: 1rem;
+          ">
+      {% endif %}
       {% if post.link %}
         <h2 class="link-post"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> <a href="{{ post.link }}" target="_blank" title="{{ post.title }}"><i class="fa fa-link"></i></a></h2>
       {% else %}
