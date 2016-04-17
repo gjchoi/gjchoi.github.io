@@ -244,6 +244,29 @@ openssl s_client -connect 127.0.0.1:5671 -tls1
 ~~~
 
 
+### JAVA Security 프레임워크의 3가지 Component
+
+1. Key Manager
+2. Trust Manager
+3. Key Store
+
+
+Key Manager
+
+: 자기 인증서를 관리. Session이 연결될 때 어떤 인증서를 Remote 호출시 사용할지 결정
+
+
+Trust Manager
+
+: Remote 인증서 관리. Session이 연결될 때 Remote의 어떤 인증서를 신뢰할지 결정
+
+
+Key Store
+
+: Java specific binary format이라 불리는 *PKCS#12*으로 보관
+
+
+
 
 
 ### JAVA 코드를 활용한 SSL 호출
@@ -278,6 +301,78 @@ public class Example1
         Channel channel = conn.createChannel();
 
         //non-durable, exclusive, auto-delete queue
+        channel.queueDeclare("rabbitmq-java-test", false, true, true, null);
+        channel.basicPublish("", "rabbitmq-java-test", null, "Hello, World".getBytes());
+
+
+        GetResponse chResponse = channel.basicGet("rabbitmq-java-test", false);
+        if(chResponse == null) {
+            System.out.println("No message retrieved");
+        } else {
+            byte[] body = chResponse.getBody();
+            System.out.println("Recieved: " + new String(body));
+        }
+
+
+        channel.close();
+        conn.close();
+    }
+}
+
+~~~
+
+
+※ 주의 : Java Version이 1.7이하이 경우 Client인증서 보내지 않고 TLS(SSL) 호출하는 경우 peer 오류가 발생하는 경우가 있다.  1.8이상을 이용해주자.
+
+
+
+
+#### 인증정보를 포함한 JAVA Client 프로그램
+
+~~~
+
+import java.io.*;
+  import java.security.*;
+  import javax.net.ssl.*;
+
+  import com.rabbitmq.client.*;
+
+
+  public class Example2
+  {
+      public static void main(String[] args) throws Exception
+      {
+
+      	// Key Manager Setting	(본인의 Client 인증서)
+        char[] keyPassphrase = "MySecretPassword".toCharArray();
+        KeyStore ks = KeyStore.getInstance("PKCS12");
+        ks.load(new FileInputStream("/path/to/client/keycert.p12"), keyPassphrase);
+
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+        kmf.init(ks, passphrase);
+
+
+		// Trust Manager Setting (remote 인증서)
+        char[] trustPassphrase = "rabbitstore".toCharArray();
+        KeyStore tks = KeyStore.getInstance("JKS");
+        tks.load(new FileInputStream("/path/to/trustStore"), trustPassphrase);
+
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+        tmf.init(tks);
+
+
+        SSLContext c = SSLContext.getInstance("TLSv1.1");
+        c.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+
+
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        factory.setPort(5671);
+        factory.useSslProtocol(c);
+
+        Connection conn = factory.newConnection();
+        Channel channel = conn.createChannel();
+
         channel.queueDeclare("rabbitmq-java-test", false, true, true, null);
         channel.basicPublish("", "rabbitmq-java-test", null, "Hello, World".getBytes());
 
