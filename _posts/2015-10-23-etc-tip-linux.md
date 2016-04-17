@@ -40,8 +40,8 @@ or
 #sudo service sshd restart
 ~~~
 
-  
 
+<br/>  
 
 Ubuntu에서 Oracel JAVA 설치
 ------------------
