@@ -210,7 +210,9 @@ config file설정하기
 
 ~~~
 rabbitmqctl eval 'ssl:cipher_suites(openssl).'
-rabbitmqctl eval 'ssl:verions().'
+
+# erl
+1> ssl:verions().
 ~~~
 
 
