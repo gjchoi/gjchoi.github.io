@@ -255,6 +255,10 @@ openssl을 통한 연결확인
 openssl s_client -connect 127.0.0.1:5671 -ssl3
 ~~~
 
+ssl3를 disable 해놨으므로 아래와 같은 메시지를 볼 수 있다.
+`no peer certificate available`
+
+
 ~~~
 # connect using TLSv1.0 through v1.2
 openssl s_client -connect 127.0.0.1:5671 -tls1
