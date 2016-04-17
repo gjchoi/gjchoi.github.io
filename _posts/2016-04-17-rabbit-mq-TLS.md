@@ -1,7 +1,7 @@
 ---
 layout: post
 title: RabbitMQ - TLS 통신보안
-weight: 110
+weight: 70
 excerpt: "Rabbit MQ의 통신간 보안을 위해 TLS를 적용하는 방법에 대해서 알아본다."
 tags: [rabbitMQ, oss]
 modified: 2016-04-17
