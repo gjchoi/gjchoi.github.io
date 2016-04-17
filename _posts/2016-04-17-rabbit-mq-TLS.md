@@ -40,7 +40,7 @@ Key와 Certification / CA Certificates
 # touch index.txt
 ~~~~
 
-2) 특정 디렉토리에 *openssl.cnf* 파일 생성
+2) *testca* 디렉토리에 *openssl.cnf* 파일 생성
 
 ~~~~~
 [ ca ]
