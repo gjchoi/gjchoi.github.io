@@ -147,7 +147,9 @@ testca
 
 #### Client용 key 생성
 
-Server용 key 생성과 거의 동일하지만
+Server용 key 생성과 거의 동일하지만 인증서 서명시
+
+Server는 `keyUsage = keyEncipherment`를 Client는 `keyUsage = digitalSignature` 방식을 사용한다는 것이 다르다.
 
 
 ~~~~~
