@@ -9,7 +9,7 @@ category : etc
 ---
 
 
-인증서없는 Password모드로 로그인하기 (EC2내에서 주로 사용)
+인증서없는 Password모드로 로그인하기
 ------------------
 
 EC2에서는 instance 생성시 발급한 인증서(pem)을 사용하여 만든 ppk파일을 사용하여 ssh로그인 하도록 되어있다.
@@ -25,13 +25,18 @@ PasswordAuthentication yes
 ~~~
 
 root계정을 사용하고 싶은 경우 PermitRootLogin을 *yes*로 설정
+
 ~~~
 #PermitRootLogin no
 PermitRootLogin yes
 ~~~
 
-
-`sudo reload ssh`로 설정 리로드 or `sudo service sshd restart`로 sshd 재시작
+ssh설정 리로드 or sshd 재시작
+~~~
+#sudo reload ssh
+or 
+#sudo service sshd restart
+~~~
 
 
 
