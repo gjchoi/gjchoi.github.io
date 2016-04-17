@@ -110,7 +110,8 @@ extendedKeyUsage = 1.3.6.1.5.5.7.3.1
 
 *.pem*과 *.cer*은 모두 같은 정보(root certificate)를 가지고 있지만 포맷이 다름.
 대부분 **PEM** 포맷 사용하지만, Microsoft진영(Microsoft, Mono)은 **DER** 사용.  
-
+  
+  
 
 4) Client와 Server용 key생성
 
