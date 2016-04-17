@@ -56,7 +56,7 @@ Ubuntu java 설치
 `$ sudo apt-get update`
  
 4) JDK 설치
-아래의 세가지 버전 중에 자신이 필요한 버전을 설치한다.
+아래의 세가지 버전 중에 자신이 필요한 버전을 설치한다.  
 
 `$ sudo apt-get install oracle-java8-installer`
 `$ sudo apt-get install oracle-java7-installer`
