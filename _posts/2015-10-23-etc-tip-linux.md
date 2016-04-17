@@ -17,6 +17,7 @@ EC2에서는 instance 생성시 발급한 인증서(pem)을 사용하여 만든 
 
 `sudo vi /etc/ssh/sshd_config` 파일에 가보면 아래 설정이 있다.
 
+
 패스워드 인증설정을 *no*에서 *yes*로 변경
 
 ~~~
@@ -32,6 +33,7 @@ PermitRootLogin yes
 ~~~
 
 ssh설정 리로드 or sshd 재시작
+
 ~~~
 #sudo reload ssh
 or 
