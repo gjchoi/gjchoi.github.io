@@ -17,7 +17,7 @@ TSL 지원
 RabbitMNQ는 기본적으로 TLS를 지원한다.
 (POOLDLE attack[^1]으로 인해 RabbitMQ 3.4.0대에 SSLv3는 disabled되어 있음)
 
-Erlang crypto 어플리케이션이 반드시 설치되고 동자가되어야 한다.
+Erlang crypto 어플리케이션이 반드시 설치되고 동작이 되어야 한다.
 
 
 [^1]:  Padding Oracle On Downgraded Legacy Encryption 의 약자로 SSL3.0 버전의 취약점으로서 TLS가 하위 SSL3.0의 호환성을 가지고 있고 CBC mode의 취약점을 이용하여 패킷을 탈취하는 보안적 문제
