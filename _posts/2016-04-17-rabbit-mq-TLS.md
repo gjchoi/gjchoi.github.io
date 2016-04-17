@@ -28,8 +28,19 @@ Key와 Certification / CA Certificates
 
 ### 테스트용 Certificate Authority 생성
 
+1) 준비 
+특정 디렉토리에 다음 디렉토리 구조 및 파일을 만든다.
 
-1. 특정 디렉토리에 *openssl.cnf* 파일 생성
+~~~~
+# mkdir testca
+# cd testca
+# mkdir certs private
+# chmod 700 private
+# echo 01 > serial
+# touch index.txt
+~~~~
+
+2) 특정 디렉토리에 *openssl.cnf* 파일 생성
 
 ~~~~~
 [ ca ]
@@ -89,7 +100,7 @@ extendedKeyUsage = 1.3.6.1.5.5.7.3.1
 
 
 
-2. OpenSSL 명령어로 *.pem*과 *.cert* 생성 (Certificate Authority 생성)
+3) OpenSSL 명령어로 *.pem*과 *.cert* 생성 (Certificate Authority 생성)
 
 ~~~~
 # openssl req -x509 -config openssl.cnf -newkey rsa:2048 -days 365 \
@@ -104,7 +115,7 @@ extendedKeyUsage = 1.3.6.1.5.5.7.3.1
 
 
 
-3. Client와 Server용 key생성
+4) Client와 Server용 key생성
 
 Erlang 클라이언트와 RabbitMQ 브로커는 PEM을 바로 사용.
 PEM은 3가지 정보 포함
