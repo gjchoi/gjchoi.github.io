@@ -28,6 +28,8 @@ Key와 Certification / CA Certificates
 
 ### 테스트용 Certificate Authority 생성
 
+자체 인증기관으로 서의 역할을 할 수 있도록 **Certificate Authority**를 생성한다.
+
 1) 준비 
 특정 디렉토리에 다음 디렉토리 구조 및 파일을 만든다.
 
@@ -115,8 +117,10 @@ extendedKeyUsage = 1.3.6.1.5.5.7.3.1
 
 4) Client와 Server용 key생성
 
-Erlang 클라이언트와 RabbitMQ 브로커는 PEM을 바로 사용.
-PEM은 3가지 정보 포함
+자체생성한 CA(Certificate Authority)에 req를 보내 인증서를 발급받는다.
+Client, Server는 CA의 database에 추가되고 (여기서는 index.txt에 해당 발급내역을 볼 수 있다.)
+
+Erlang 클라이언트와 RabbitMQ 브로커는 PEM을 바로사용하며 설정에 3가지 정보가 필요하다.
 
 1. root certificate (인증정보)
 2. private key (공인인증의 소유권)
