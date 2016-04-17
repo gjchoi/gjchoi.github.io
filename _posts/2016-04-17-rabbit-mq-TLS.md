@@ -100,7 +100,7 @@ extendedKeyUsage = 1.3.6.1.5.5.7.3.1
 
 
 
-3) OpenSSL 명령어로 *.pem*과 *.cert* 생성 (Certificate Authority 생성)
+3) OpenSSL 명령어로 *.pem*과 *.cer* 생성 (Certificate Authority 생성)
 
 ~~~~
 # openssl req -x509 -config openssl.cnf -newkey rsa:2048 -days 365 \
