@@ -192,9 +192,9 @@ config file설정하기
 [
   {rabbit, [
      {ssl_listeners, [5671]},				// 5671포트로 ssl기동
-     {ssl_options, [{cacertfile,"/path/to/testca/cacert.pem"},		// root 인증서 위치 지정
-                    {certfile,"/path/to/server/cert.pem"},			// 서버 인증서 위치 지정
-                    {keyfile,"/path/to/server/key.pem"},			// 서버 key 파일 위치지정
+     {ssl_options, [{cacertfile,"/etc/rabbitmq/testca/cacert.pem"},		// root 인증서 위치 지정
+                    {certfile,"/etc/rabbitmq/server/cert.pem"},			// 서버 인증서 위치 지정
+                    {keyfile,"/etc/rabbitmq/server/key.pem"},			// 서버 key 파일 위치지정
                     {verify,verify_peer},				// client가 보낸 인증서를 신뢰하여 통신 
                    #{verify,verify_none},				// client와 인증서 교환 안함
                     {fail_if_no_peer_cert,false}]}		// client가 인증서를 안가지고 있을 시 허용
@@ -350,6 +350,24 @@ public class Example1
 
 #### 인증정보를 포함한 JAVA Client 프로그램
 
+java의 KeyManager와 TrustManager를 사용하기 위해서는 아래 파일들이 필요하다.
+
+1) keycert.p12 
+client인증서 PEM과 key파일로 pkck12형태로 만든 client key파일
+
+
+2) keystore
+server인증서 PEM을 java keytool명령어를 통해 `server1`이라는 이름을 붙여서 keystore파일로 내보낸다.
+아래 명령어로 수행하며 중간에 keystore에 대한 패스워드를 입력하고 `yes`를 선택한다.
+
+~~~~
+keytool -import -alias server1 -file /etc/rabbitmq/server/cert.pem -keystore /etc/rabbitmq/client/rabbitstore
+~~~~
+
+이 2가지 파일을 client측에 설치하여 아래와 같이 코드에서 사용한다.
+
+#### JAVA Code
+
 ~~~
 
 import java.io.*;
@@ -370,13 +388,13 @@ import java.io.*;
         ks.load(new FileInputStream("/path/to/client/keycert.p12"), keyPassphrase);
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-        kmf.init(ks, passphrase);
+        kmf.init(ks, keyPassphrase);
 
 
-		// Trust Manager Setting (remote 인증서)
+	// Trust Manager Setting (remote 인증서)
         char[] trustPassphrase = "rabbitstore".toCharArray();
         KeyStore tks = KeyStore.getInstance("JKS");
-        tks.load(new FileInputStream("/path/to/trustStore"), trustPassphrase);
+        tks.load(new FileInputStream("/path/to/trustStore"), trustPassphrase);	//keytool 명령어로 keystore만들때 입력했던 pw
 
         TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
         tmf.init(tks);
