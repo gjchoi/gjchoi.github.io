@@ -14,13 +14,15 @@ category : etc
 데이터 관련 명령
 ==============================
 
-`db.getCollection('ContentInstance').find({ con : "data1" })`
+~~~~~
+db.getCollection('ContentInstance').find({ con : "data1" })
 
-`db.getCollection('ContentInstance').find({ con : "data1" }).count()`
+db.getCollection('ContentInstance').find({ con : "data1" }).count()
 
-`db.getCollection('ContentInstance').find( {con : "data1", path : {$regex : /^.*dir-20.*/ } })`
+db.getCollection('ContentInstance').find( {con : "data1", path : {$regex : /^.*dir-20.*/ } })
 
-`db.getCollection('ContentInstance').find( {con : "data1", path : {$regex : /^dir-1\/content-20.*$/ } })`
+db.getCollection('ContentInstance').find( {con : "data1", path : {$regex : /^dir-1\/content-20.*$/ } })
+~~~~~
 
 
 
