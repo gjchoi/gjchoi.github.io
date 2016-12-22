@@ -86,3 +86,8 @@ user 삭제
 cli 접근
 
 `mongo -u admin -p '!mgadmin2015'`
+
+
+replacation 상태확인
+
+`rs.status()`
