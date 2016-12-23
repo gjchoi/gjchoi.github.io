@@ -25,6 +25,20 @@ db.getCollection('ContentInstance').find( {con : "data1", path : {$regex : /^dir
 ~~~~~
 
 
+다중 update여러건을 한꺼번에
+~~~
+db.user_trace.updateMany(
+   { logTimestamp : { $lt : new Date("2016-12-17T00:00:00Z") } },
+   { $unset: { data: "" } }
+)
+~~~
+
+다중 삭제
+
+~~~
+db.user_trace.remove({ logTimestamp : { $lt : new Date("2016-12-13T00:00:00Z") } });
+~~~
+
 
 권한설정 명령
 ==============================
@@ -91,3 +105,5 @@ cli 접근
 replacation 상태확인
 
 `rs.status()`
+
+
