@@ -107,3 +107,12 @@ replacation 상태확인
 `rs.status()`
 
 
+function call권한 부여
+
+~~~
+db.createRole( { role: "executeFunctions", privileges: [ { resource: { anyResource: true }, actions: [ "anyAction" ] } ], roles: [] } ) 
+
+db.grantRolesToUser("bi", [ { role: "executeFunctions", db: "admin" } ])
+~~~
+
+
