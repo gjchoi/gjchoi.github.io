@@ -115,4 +115,8 @@ db.createRole( { role: "executeFunctions", privileges: [ { resource: { anyResour
 db.grantRolesToUser("bi", [ { role: "executeFunctions", db: "admin" } ])
 ~~~
 
+index 생성 (background에서 돌도록)
 
+~~~
+db.collection.createIndex( { serviceId: 1}, { background : true} )
+~~~
