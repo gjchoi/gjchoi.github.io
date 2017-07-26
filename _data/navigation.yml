@@ -6,6 +6,9 @@
 - title: Rabbit_MQ
   url: /rabbit/
 
+- title: Mongo DB
+  url: /mongo/
+
 - title: 기타
   url: /etc/
 
