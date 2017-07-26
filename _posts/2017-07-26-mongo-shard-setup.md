@@ -7,7 +7,7 @@ tags: [mongoDB, oss]
 modified: 2017-07-26
 comments: true
 category : mongo
-icon : sticky-note.ico
+icon : wrench.ico
 ---
 
 몽고DB 샤드모드로 구동하기
