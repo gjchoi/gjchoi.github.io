@@ -186,9 +186,10 @@ security:
 
 mongodb에서 생성해준 계정(shard별 계정)과 다르게 mongos에서도 계정을 생성해주어야 한다.
 
-#### 위의 Config서버를 security > keyFile설정을 재거하고 다시 기동한다. (replication 모두)
+1) 위의 Config서버를 security > keyFile설정을 재거하고 다시 기동한다. (replication 모두)
 
-#### mongos에 conf파일에서도 security > keyFile설정을 제거하고 다시 기동한다.
+2) mongos에 conf파일에서도 security > keyFile설정을 제거하고 다시 기동한다.
+
 
 #### mongos기동
 
@@ -264,9 +265,20 @@ sh.enableSharding("test_database")
 -------------------------------
 
 ### client로 접속
+
 Robomongo나 mongo client등을 이용해서
 mongos 주소에 접근한다.
-(위에 생성한 계정으로 각 
+(위의 과정에서 각 mongodb에 생성한 계정으로 mongodb주소로 직접 붙을 수 있지만 부분데이터만 확인가능하다)
 
+샤드 특성에 맞게 라우팅 key값을 설정하여 collection 샤드설정을한다.
 
+~~~
+sh.shardCollection("<database>.<collection>", { <key> : "hashed" } )
+~~~
+  
+mongos에서 데이터를 insert하여 key값에 따라서 잘들어가지는지 확인한다.
 
+~~~
+db.test_database.shard_collection.insert({ "key" : "test1" });
+db.test_database.shard_collection.insert({ "key" : "test2" });
+~~~
