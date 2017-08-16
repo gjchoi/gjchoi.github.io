@@ -107,12 +107,15 @@ replacation 상태확인
 `rs.status()`
 
 
+
 function call권한 부여
 
 ~~~
+use admin
 db.createRole( { role: "executeFunctions", privileges: [ { resource: { anyResource: true }, actions: [ "anyAction" ] } ], roles: [] } ) 
 
-db.grantRolesToUser("bi", [ { role: "executeFunctions", db: "admin" } ])
+use test
+db.grantRolesToUser("test_user", [ { role: "executeFunctions", db: "test" } ])
 ~~~
 
 index 생성 (background에서 돌도록)
