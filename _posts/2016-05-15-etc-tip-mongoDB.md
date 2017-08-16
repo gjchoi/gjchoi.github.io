@@ -115,7 +115,7 @@ use admin
 db.createRole( { role: "executeFunctions", privileges: [ { resource: { anyResource: true }, actions: [ "anyAction" ] } ], roles: [] } ) 
 
 use test
-db.grantRolesToUser("test_user", [ { role: "executeFunctions", db: "test" } ])
+db.grantRolesToUser("test_user", [ { role: "executeFunctions", db: "admin" } ])
 ~~~
 
 index 생성 (background에서 돌도록)
