@@ -123,3 +123,11 @@ index 생성 (background에서 돌도록)
 ~~~
 db.collection.createIndex( { serviceId: 1}, { background : true} )
 ~~~
+
+
+mongoDB 실행 job 확인 및 kill
+
+~~~
+db.currentOp();
+db.killOp(Op번호);
+~~~
