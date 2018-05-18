@@ -131,3 +131,62 @@ mongoDB 실행 job 확인 및 kill
 db.currentOp();
 db.killOp(Op번호);
 ~~~
+
+
+function생성 및 사용
+
+생성 예제
+
+~~~
+db.system.js.save(
+   {
+     _id : "toDateTimeStr" ,
+     value : function (date){ 
+        var yyyy = date.getUTCFullYear().toString();
+        var mm = (date.getUTCMonth() + 1).toString();
+        var dd = date.getUTCDate().toString();
+        var hh = date.getUTCHours().toString();
+        var mi = date.getUTCMinutes().toString();
+        var ss = date.getUTCSeconds().toString();
+        var dateStr = yyyy + '-' + (mm[1] ? mm : '0'+mm[0]) + '-' + (dd[1] ? dd : '0'+dd[0])
+                     + ' ' + (hh[1] ? hh : '0'+hh[0]) + ':' + (mi[1] ? mi : '0'+mi[0]) + ':' + (ss[1] ? ss : '0'+ss[0]);
+        return dateStr;
+    }
+  }
+);
+~~~
+
+사용 예제
+
+~~~
+db.loadServerScripts();
+
+db.loadServerScripts();
+toDateTimeStr(new Date());
+~~~
+
+MR내에서의 사용
+
+~~~
+db.getSiblingDB("editor").user_trace.mapReduce(
+  //map
+  function(){
+      var date = this.logTimestamp;
+      emit({ "serviceId" : 1, "date" : toDateStr(date) } , 1);
+  }
+ //reduce
+ ,function(key, values){
+     return Array.sum(values);
+ }
+      
+ //option
+ ,{
+     out : { "replace" : "MR_TEST", db : "bi" }
+    ,query : { logTimestamp : { $gte: new Date("2017-07-26T00:00:00Z"), $lt: new Date("2017-07-27T00:00:00Z") }
+            }
+    ,scope : { "toDateStr" : toDateStr }         // toDateStr function을 MR과정중에 사용할 수 있도록 세팅한다.               
+  }        
+);
+
+~~~
+
