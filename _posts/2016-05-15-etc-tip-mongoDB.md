@@ -133,9 +133,10 @@ db.killOp(Op번호);
 ~~~
 
 
-function생성 및 사용
+Function 관련 명령
+==============================
 
-생성 예제
+function 생성 예제
 
 ~~~
 db.system.js.save(
@@ -156,7 +157,7 @@ db.system.js.save(
 );
 ~~~
 
-사용 예제
+function 사용 예제
 
 ~~~
 db.loadServerScripts();
