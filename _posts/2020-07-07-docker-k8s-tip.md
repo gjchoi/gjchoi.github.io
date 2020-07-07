@@ -113,6 +113,7 @@ kubectl delete svc -l run={appName}
 Pod확인
 ~~~
 kubectl get pods
+kubectl get pods -n {namespace}
 ~~~
 
 Pod제거
@@ -206,4 +207,14 @@ kubectl exec -it api-default-559c85dddc-jh46r -c api-default-nginx -- /bin/bash
 ~~~
 
 
+리소스 제약설정
+~~~
+resources:
+   limits:
+      cpu: "1"
+      memory: 1Gi
+   requests:
+      cpu: "0.1"
+      memory: 100Mi
+~~~
 
