@@ -131,7 +131,7 @@ ReplicaSet 확인
 kubectl get rs
 ~~~
 
-pod 생성 ( 파일로 생성 )
+pod 생성 ( 파일로 생성 - 선언적 인프라스트럭쳐 )
 ~~~
 kubectl create -f Pod.yaml
 ~~~
@@ -154,6 +154,21 @@ spec:
 특정 Selector 조건에 걸리는 리소스 찾기
 ~~~
 kubectl get pod,replicaset,deployment --selector=app.kubernetes.io/instance=test
+~~~
+
+설정확인
+~~~
+## 상태정보 같이 조회
+kubectl get {pod|deploy|svc...} {resourceName} -o yaml
+# 설정만 조회
+kubectl get {pod|deploy|svc...} {resourceName} -o yaml --export
+~~~
+
+설정파일의 정합성 체크와 실행 예상결과 확인
+(정합성체크 안하면 틀린문법은 무시되고 실행됨)
+~~~
+kubectl apply -f {fileName} --validate
+kubectl apply -f {fileName} --dry-run
 ~~~
 
 
