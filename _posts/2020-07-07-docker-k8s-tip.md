@@ -171,6 +171,15 @@ kubectl apply -f {fileName} --validate
 kubectl apply -f {fileName} --dry-run
 ~~~
 
+### 라벨과 어노테이션
+
+라벨
+: 팟, 디플로이먼트, 서비스 등 쿠버네티스 객체를 그룹화하고 구성하기 위해 사용
+
+
+어노테이션
+: 데이터 추가를 통해 특정 인스턴스에 대한 부가정보 제공
+
 
 ### 롤링 업데이트 ( deployment 를 변경함)
 
