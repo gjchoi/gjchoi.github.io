@@ -180,6 +180,60 @@ kubectl apply -f {fileName} --dry-run
 어노테이션
 : 데이터 추가를 통해 특정 인스턴스에 대한 부가정보 제공
 
+### 컨피그맵과 시크릿
+
+
+컨피그맵
+: env, 볼륨마운트 등의 방법으로 별도 key=value의 설정을 세팅할 수 있는 리소스
+: 직접 설정 및 파일로 설정할 수 있다.
+
+컨피그맵 생성
+~~~
+kubectl create configmap test-config --from-literal=log.level=err
+~~~
+
+~~~
+kubectl get configmap
+kubectl describe configmap test-config
+~~~
+
+설정매핑
+~~~
+envFrom:
+  - configMapRef:
+    name: example-config
+~~~
+
+설정매핑(특정 key)
+~~~
+valueFrom:
+  - configMapKeyRef:
+    name: example
+~~~    
+
+시크릿
+: env, 볼륨마운트 등의 방법으로 세팅할 수 있지만 password, key값 등 보안을 요하는 정보를 kubenate자체에 보관 할 수 있도록 해주는 리소스
+: 직접 설정 (파일은 가능할 순 있어도 노출 위험)
+
+생성
+~~~
+kubectl create secret generic test-creds --from-file=username.txt --from-file=password.txt
+~~~
+
+조회
+~~~
+kubectl get secret
+kubectl get secret test-creds -o yaml --export
+~~~
+
+설정매핑 (특정 key)
+~~~
+valueFrom:
+  secretKeyRef:
+    name: database-creds
+    key: password.txt
+~~~
+
 
 ### 롤링 업데이트 ( deployment 를 변경함)
 
@@ -240,5 +294,16 @@ resources:
    requests:
       cpu: "0.1"
       memory: 100Mi
+~~~
+
+
+### 기타
+
+#### jsonPath
+
+jsonpath 문법을 통해서 특정 부분 데이터만 파싱해서 가져올 수 있다.
+
+~~~
+kubectl get pods -l app=test -o jsonpath='{.items[*].metadata.name}'
 ~~~
 
