@@ -35,6 +35,16 @@ docker tag {imageId} {tagName}
 docker push {registryPath}
 ~~~
 
+도커이미지 중 <none>:<none> 상태 이미지 제거
+~~~
+docker image prune
+~~~
+  
+도커이미지 컨테이너 모두 삭제
+~~~
+docker container rm $(docker container ls -aq)
+~~~
+
 
 ### Dockerfile 샘플
 
